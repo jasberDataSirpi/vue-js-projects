@@ -1,0 +1,42 @@
+{
+  "tasks": [
+    {
+      "text": "Trojan",
+      "day": "Tuesday",
+      "reminder": true,
+      "id": 2
+    },
+    {
+      "text": "Appointment",
+      "day": "saturday",
+      "reminder": true,
+      "id": 3
+    },
+    {
+      "text": "Vue Js",
+      "day": "Monday",
+      "reminder": true,
+      "id": 4
+    }
+  ],
+  "users": [
+    {
+      "firstName": "jasberraja",
+      "lastName": "P",
+      "company": "datasirpi",
+      "id": 1
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "company": "",
+      "id": 2
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "company": "",
+      "id": 3
+    }
+  ]
+}
