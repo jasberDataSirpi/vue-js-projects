@@ -26,29 +26,12 @@ export default {
     },
       data(){
         return {
-            tasks:[ {
-      "text": "Trojan",
-      "day": "Tuesday",
-      "reminder": true,
-      "id": 2
-    },
-    {
-      "text": "Appointment",
-      "day": "saturday",
-      "reminder": true,
-      "id": 3
-    },
-    {
-      "text": "Vue Js",
-      "day": "Monday",
-      "reminder": true,
-      "id": 4
-    }],
+            tasks:[],
         }
       },
       methods:{
  async addTask(task) {
-      // const res = await fetch('api/tasks', {
+      // const res = await fetch('addtask', {
       //   method: 'POST',
       //   headers: {
       //     'Content-type': 'application/json',
@@ -56,7 +39,23 @@ export default {
       //   body: JSON.stringify(task),
       // })
       // const data = await res.json()
-      this.tasks = [...this.tasks, task]
+      // this.tasks = [...this.tasks, data]
+
+      axios.post('addtask',task)
+  .then((response) => {
+    console.log(response);
+    console.log(response.status);
+                 if(response.status==200){
+                      this.tasks = [...this.tasks, response.data]
+                }
+                else{
+                     window.alert("Task stored not successfull");
+                }
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+  
     },
 
 async deleteTask(id) {
