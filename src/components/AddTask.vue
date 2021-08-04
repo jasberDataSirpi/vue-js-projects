@@ -39,7 +39,7 @@ export default {
             }
               const newTask={
                 text:this.text,
-                day:this.day,
+                date:this.day,
                 reminder:this.reminder
             }
             this.$emit("add-task",newTask);

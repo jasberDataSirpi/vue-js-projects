@@ -31,15 +31,6 @@ export default {
       },
       methods:{
  async addTask(task) {
-      // const res = await fetch('addtask', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-type': 'application/json',
-      //   },
-      //   body: JSON.stringify(task),
-      // })
-      // const data = await res.json()
-      // this.tasks = [...this.tasks, data]
 
       axios.post('addtask',task)
   .then((response) => {
@@ -85,7 +76,7 @@ async deleteTask(id) {
       )
     },
    async fetchTasks() {
-      const res = await fetch('api/tasks')
+      const res = await fetch('tasks')
       const data = await res.json()
       return data
     },
