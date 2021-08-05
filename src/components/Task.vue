@@ -1,9 +1,9 @@
 <template>
 <div 
-@click="$emit('toggle-reminder',task.id)" 
+@click="$emit('toggle-reminder',task._id)" 
 :class="[task.reminder ? 'reminder':'','task']">
 <h3>{{task.text}}
-  <span @click="$emit('delete-task',task.id)" class="fas">X</span>
+  <span @click="$emit('delete-task',task._id)" class="fas">X</span>
 </h3>
     <p>{{task.date}}</p>
 </div>  
