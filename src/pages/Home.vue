@@ -61,14 +61,17 @@ async deleteTask(id) {
         //   : alert('Error deleting task')
 
 axios.delete(`deletetask/${id}`)
-  .then(function (response) {
+  .then((response) => {
     console.log(response);
-    (this.tasks = this.tasks.filter((task) => task._id !== id))
+     if(response.status==200){
+    this.tasks = this.tasks.filter((task) => {
+    return task._id !== id
+    })
+     }else{
+       window.alert("delete not success");
+     }
   })
-  .catch(function (error) {
-    console.log(error);
-    window.alert('Error deleting task')
-  });
+  
 
       }
       // this.tasks = this.tasks.filter((task) => task.id !== id)
