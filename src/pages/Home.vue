@@ -53,12 +53,23 @@ export default {
 
 async deleteTask(id) {
       if (confirm('Are you sure?')) {
-        const res = await fetch(`tasks/${id}`, {
-          method: 'DELETE',
-        })
-        res.status === 200
-          ? (this.tasks = this.tasks.filter((task) => task._id !== id))
-          : alert('Error deleting task')
+        // const res = await fetch(`deletetask/${id}`, {
+        //   method: 'DELETE',
+        // })
+        // res.status === 200
+        //   ? (this.tasks = this.tasks.filter((task) => task._id !== id))
+        //   : alert('Error deleting task')
+
+axios.delete(`deletetask/${id}`)
+  .then(function (response) {
+    console.log(response);
+    (this.tasks = this.tasks.filter((task) => task._id !== id))
+  })
+  .catch(function (error) {
+    console.log(error);
+    window.alert('Error deleting task')
+  });
+
       }
       // this.tasks = this.tasks.filter((task) => task.id !== id)
     },
@@ -77,10 +88,18 @@ async deleteTask(id) {
         task._id === id ? { ...task, reminder: !task.reminder } : task
       )
     },
-   async fetchTasks() {
-      const res = await fetch('tasks')
-      const data = await res.json()
-      return data
+  fetchTasks() {
+     axios.get('tasks').then(res=>{
+       console.log(res);
+       this.tasks=res.data  //get all tasks from backend
+     }).catch(err=>{
+       console.log(err);
+       window.alert("No Tasks");
+     })
+
+      // const res = await fetch('tasks')
+      // const data = await res.json()
+      // return data
     },
     // async fetchTask(id) {
     //   const res = await fetch(`api/tasks/${id}`)
@@ -89,7 +108,7 @@ async deleteTask(id) {
     // },
   },
      async created(){
-        this.tasks=await this.fetchTasks();
+        this.fetchTasks();
       },
 
 }
