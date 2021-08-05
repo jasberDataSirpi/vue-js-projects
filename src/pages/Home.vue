@@ -52,13 +52,7 @@ export default {
     },
 
 async deleteTask(id) {
-      if (confirm('Are you sure?')) {
-        // const res = await fetch(`deletetask/${id}`, {
-        //   method: 'DELETE',
-        // })
-        // res.status === 200
-        //   ? (this.tasks = this.tasks.filter((task) => task._id !== id))
-        //   : alert('Error deleting task')
+      if (confirm('Are you sure?')) {    
 
 axios.delete(`deletetask/${id}`)
   .then((response) => {
@@ -74,7 +68,6 @@ axios.delete(`deletetask/${id}`)
   
 
       }
-      // this.tasks = this.tasks.filter((task) => task.id !== id)
     },
  async toggleReminder(id) {
       // const taskToToggle = await this.fetchTask(id)
@@ -87,9 +80,23 @@ axios.delete(`deletetask/${id}`)
       //   body: JSON.stringify(updTask),
       // })
       // const data = await res.json()
-      this.tasks = this.tasks.map((task) =>
+      // this.tasks = this.tasks.map((task) =>
+      //   task._id === id ? { ...task, reminder: !task.reminder } : task
+      // )
+ const taskToToggle =  this.tasks.filter((task) => {
+    return task._id == id
+    })
+      const updTask = { ...taskToToggle[0], reminder: !taskToToggle[0].reminder }
+
+      axios.put(`changetask/${id}`,updTask)
+      .then(response=>{
+        if(response.status==200){
+          this.tasks = this.tasks.map((task) =>
         task._id === id ? { ...task, reminder: !task.reminder } : task
       )
+        }
+      })
+
     },
   fetchTasks() {
      axios.get('tasks').then(res=>{
@@ -99,16 +106,8 @@ axios.delete(`deletetask/${id}`)
        console.log(err);
        window.alert("No Tasks");
      })
-
-      // const res = await fetch('tasks')
-      // const data = await res.json()
-      // return data
     },
-    // async fetchTask(id) {
-    //   const res = await fetch(`api/tasks/${id}`)
-    //   const data = await res.json()
-    //   return data
-    // },
+   
   },
      async created(){
         this.fetchTasks();
