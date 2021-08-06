@@ -38,6 +38,7 @@ export default {
         return
             }
               const newTask={
+                userId:localStorage.getItem('id'),  
                 text:this.text,
                 date:this.day,
                 reminder:this.reminder

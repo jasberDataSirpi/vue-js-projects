@@ -81,6 +81,7 @@ axios.post('login',loginData)
                  if(response.status==200){
                     // window.alert("logged in successfully");
                     localStorage.setItem('mail',response.data.email)
+                    localStorage.setItem('id',response.data._id)
                       this.$router.push('home');
                 }
                 else{
