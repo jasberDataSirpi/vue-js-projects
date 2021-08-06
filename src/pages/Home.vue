@@ -99,7 +99,8 @@ axios.delete(`deletetask/${id}`)
 
     },
   fetchTasks() {
-     axios.get('tasks').then(res=>{
+    let userId = localStorage.getItem('id');
+     axios.get(`tasks/${userId}`).then(res=>{
        console.log(res);
        this.tasks=res.data  //get all tasks from backend
      }).catch(err=>{
